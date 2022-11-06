@@ -22,7 +22,7 @@ set_target_properties(${TARGET_NAME} PROPERTIES FOLDER "Engine")
 
 target_compile_options(${TARGET_NAME} PUBLIC "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/WX->")
 
-#target_link_libraries(${TARGET_NAME} InnoRuntime)
+target_link_libraries(${TARGET_NAME} InnoRuntime)
 
 #POST BUILD
 set(INNO_EDITOR_HEADS "${EDITOR_HEADERS}" PARENT_SCOPE)

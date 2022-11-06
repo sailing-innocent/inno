@@ -1,4 +1,5 @@
 #include <editor/include/editor.h>
+#include <runtime/engine.h>
 
 int main(int argc, char** argv)
 {
@@ -8,6 +9,6 @@ int main(int argc, char** argv)
     // engine.run()
     // engine.clear()
     // engine.shutdown()
-    inno::sayHello();
+    int res = inno::visualizeDistribution();
     return 0;
 }
