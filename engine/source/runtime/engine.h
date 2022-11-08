@@ -13,8 +13,9 @@
 #include <memory>
 #include <cstdlib>
 
-namespace inno
-{
+#include <common.h>
+
+INNO_NAMESPACE_BEGIN
 
 const std::string vertShaderPath = "E:/assets/shaders/canvas/vert.spv";
 const std::string fragShaderPath = "E:/assets/shaders/canvas/frag.spv";
@@ -46,9 +47,10 @@ inline double clamp(double x, double _min, double _max) {
 
 class InnoEngine
 {
-    // friend class InnoEditor;
-    // static const float s_fps_alpha;
+    friend class InnoEditor;
+    static const float s_fps_alpha;
 public:
+    void startEngine(const std::string& config_file_path);
     // void config(const std::string& config_file_path);
     // void init();
     // bool isQuit() const { return m_is_quit;}
@@ -61,6 +63,6 @@ protected:
 };
 
 
-} // inno
+INNO_NAMESPACE_END
 
 #endif // INNO_ENGINE_H_

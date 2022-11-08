@@ -5,18 +5,30 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # add library json11
 
-file(GLOB_RECURSE HEADER_FILES "*.h")
-file(GLOB_RECURSE SOURCE_FILES "*.cpp")
+# file(GLOB_RECURSE HEADER_FILES "*.h")
+# file(GLOB_RECURSE SOURCE_FILES "*.cpp")
+# source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${HEADER_FILES} ${SOURCE_FILES})
 
-source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${HEADER_FILES} ${SOURCE_FILES})
+# add_library(${TARGET_NAME} ${HEADER_FILES} ${SOURCE_FILES})
 
-add_library(${TARGET_NAME} ${HEADER_FILES} ${SOURCE_FILES})
+list(APPEND TARGET_SOURCE
+    core/base/hash.h
+    core/base/macro.h
+    core/log/log_system.h
+    core/log/log_system.cpp
+    function/global/global_context.h
+    function/global/global_context.cpp
+    engine.h
+    engine.cpp
+)
+add_library(${TARGET_NAME} ${TARGET_SOURCE})
 
 list(APPEND DRAW_LIBS_DIR
     ${LIBSAIL_DIR}
     ${LIBING_DIR}
     "E:/libs/glfw"
     "E:/sdk/Vulkan/Lib"
+    "E:/libs/spdlog/"
 )
 
 list(APPEND DRAW_INCLUDE
@@ -33,6 +45,7 @@ list(APPEND DRAW_LIBS
     "vulkan-1"
     "libsail" 
     "libing"
+    "spdlog"
 )
 
 target_link_directories(${TARGET_NAME} PUBLIC ${DRAW_LIBS_DIR})

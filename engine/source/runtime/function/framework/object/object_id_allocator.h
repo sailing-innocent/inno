@@ -3,7 +3,9 @@
 #include <atomic>
 #include <limits>
 
-namespace inno {
+#include <common.h>
+
+INNO_NAMESPACE_BEGIN
 
 using GObjectID = std::size_t;
 
@@ -17,4 +19,4 @@ private:
     static std::atomic<GObjectID> m_next_id;
 };
 
-}
+INNO_NAMESPACE_END

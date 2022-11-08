@@ -1,6 +1,15 @@
 #include <runtime/engine.h>
 
-namespace inno {
+#include <runtime/core/base/macro.h>
+
+INNO_NAMESPACE_BEGIN
+
+void InnoEngine::startEngine(const std::string& config_file_path)
+{
+    g_runtime_global_context.startSystems(config_file_path);
+    LOG_INFO("Engin Start");
+    std::cout << "Hello?" << std::endl;
+}
 
 int drawHistogram(std::vector<float>& data) {
     if (data.size() == 0) { return -1; }
@@ -135,4 +144,4 @@ int visualizeDistribution() {
 }
 
 
-}
+INNO_NAMESPACE_END
