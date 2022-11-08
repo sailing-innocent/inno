@@ -17,9 +17,9 @@ int main(int argc, char** argv)
 
     inno::InnoEngine* engine = new inno::InnoEngine();
     engine->startEngine(config_file_path.generic_string());
-
+    std::cout << "ENGINE is RUNNING.." << std::endl;
     // engine->clear();
-    // engine->shutdownEngine();
+    engine->shutdownEngine();
 
     return 0;
 }

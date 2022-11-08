@@ -1,6 +1,6 @@
 #include <runtime/function/global/global_context.h>
-
 #include "runtime/core/log/log_system.h"
+
 #include <iostream>
 
 INNO_NAMESPACE_BEGIN

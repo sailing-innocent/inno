@@ -1,14 +1,65 @@
 #include <runtime/engine.h>
 
 #include <runtime/core/base/macro.h>
+// reflection register
+// world manager
+#include "runtime/function/global/global_context.h"
+// input_system
+// particle_manager
+// physics_manager
+// render_system
+#include "runtime/function/render/window_system.h"
+// debug_draw
 
 INNO_NAMESPACE_BEGIN
 
+bool g_is_editor_mode {false};
+std::unordered_set<std::string> g_editor_tick_component_types {};
+
 void InnoEngine::startEngine(const std::string& config_file_path)
 {
+    // Reflection
     g_runtime_global_context.startSystems(config_file_path);
-    LOG_INFO("Engin Start");
-    std::cout << "Hello?" << std::endl;
+    LOG_DEBUG("Engin Start");
+}
+
+void InnoEngine::shutdownEngine()
+{
+    LOG_INFO("Engine Shutdown");
+    g_runtime_global_context.shutdownSystems();
+    // Reflection
+}
+
+void InnoEngine::initalize() {}
+void InnoEngine::clear() {}
+
+void InnoEngine::run()
+{
+    std::shared_ptr<WindowSystem> window_system = g_runtime_global_context.m_window_system;
+    ASSERT(window_system);
+
+    while (!window_system->shouldClose())
+    {
+        const float delta_time = 0.0; // calculateDeltaTime()
+        tickOneFrame();
+    }
+}
+
+// calculateDeltaTime
+
+bool InnoEngine::tickOneFrame(float delta_time)
+{
+    // logicTick
+    // calculateFPS
+    // swap render data
+    // renderTick
+
+    // debug renderer
+
+    // pollEvent
+    // setTitle
+    const bool should_window_close = false; // ->shouldClose();
+    return !should_window_close;
 }
 
 int drawHistogram(std::vector<float>& data) {

@@ -20,10 +20,12 @@ list(APPEND TARGET_SOURCE
     function/global/global_context.cpp
     engine.h
     engine.cpp
+    function/render/window_system.h
+    function/render/window_system.cpp
 )
 add_library(${TARGET_NAME} ${TARGET_SOURCE})
 
-list(APPEND DRAW_LIBS_DIR
+list(APPEND RUNTIME_LIBS_DIR
     ${LIBSAIL_DIR}
     ${LIBING_DIR}
     "E:/libs/glfw"
@@ -31,7 +33,7 @@ list(APPEND DRAW_LIBS_DIR
     "E:/libs/spdlog/"
 )
 
-list(APPEND DRAW_INCLUDE
+list(APPEND RUNTIME_INCLUDE
     ${LIBSAIL_INCLUDE}
     ${LIBING_INCLUDE}
     "E:/libs/eigen/"
@@ -40,17 +42,17 @@ list(APPEND DRAW_INCLUDE
     "include"
 )
 
-list(APPEND DRAW_LIBS
+list(APPEND RUNTIME_LIBS
     "glfw3"
     "vulkan-1"
     "libsail" 
     "libing"
-    "spdlog"
+    "spdlogd"
 )
 
-target_link_directories(${TARGET_NAME} PUBLIC ${DRAW_LIBS_DIR})
-target_link_libraries(${TARGET_NAME} PUBLIC ${DRAW_LIBS})
-target_include_directories(${TARGET_NAME} PUBLIC ${DRAW_INCLUDE})
+target_link_directories(${TARGET_NAME} PUBLIC ${RUNTIME_LIBS_DIR})
+target_link_libraries(${TARGET_NAME} PUBLIC ${RUNTIME_LIBS})
+target_include_directories(${TARGET_NAME} PUBLIC ${RUNTIME_INCLUDE})
 
 target_include_directories(
   ${TARGET_NAME} 
