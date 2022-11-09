@@ -11,8 +11,10 @@ uniform float t;
 void main()
 { 
     // gl_Position = transform * vec4(aPos, 1.0f);
-    float wav1 =  0.4 * sin(t + 10 * aPos[0]);
-    float wav2 =  0.4 * sin(2 * t + 5 * aPos[0]);
+    float t1 = max((t - 10  - aPos[0] * 10), 0.0);
+    float t2 = min( - 2 * (t - 15 + aPos[0] * 5) , 0.0);
+    float wav1 =  0.4 * sin(t1);
+    float wav2 =  0.4 * sin(t2);
     gl_Position = vec4(aPos[0], wav1 + wav2, aPos[2], 1.0);
     vertexColor = vec4(aColor, 1.0);
 }
