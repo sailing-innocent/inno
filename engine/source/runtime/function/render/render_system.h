@@ -49,7 +49,7 @@ public:
     // swapLogicRenderData
     // getSwapContext
     // getRenderCamera
-    // getRHI
+    std::shared_ptr<RHI> getRHI() const;
 
     // setRenderPipelineType
     // initializeUIRenderBackend
@@ -69,7 +69,7 @@ public:
 private:
     // m_render_pipeline_type
     // m_swap_context
-    // m_rhi
+    std::shared_ptr<RHI> m_rhi;
     // m_render_camera
     // m_render_scene
     // m_render_resource

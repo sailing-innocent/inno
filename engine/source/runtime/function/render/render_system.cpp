@@ -15,7 +15,7 @@
 // main_camera_pass
 // particle_pass
 
-// vulkan_rhi
+#include "runtime/function/render/interface/vulkan/vulkan_rhi.h"
 
 INNO_NAMESPACE_BEGIN
 
@@ -29,7 +29,10 @@ void RenderSystem::initialize(RenderSystemInitInfo init_info)
     // asset manager
     
     // render context initalize
-    // m_rhi -> initialize
+    RHIInitInfo rhi_init_info;
+    rhi_init_info.window_system = init_info.window_system;
+    m_rhi = std::make_shared<VulkanRHI>();
+    m_rhi->initialize(rhi_init_info);
 
     // global rendering resource
 
@@ -45,12 +48,15 @@ void RenderSystem::initialize(RenderSystemInitInfo init_info)
 
 void RenderSystem::tick(float delta_time)
 {
+    // LOG_INFO("Render System Ticking...");
     // process swap data
-    // rhi prepare context
+    // m_rhi->prepareContext();
+    
     // render_resource update per frame buffer
     // render_scene update visible objects
     // prepare pass data
-    // debug manager -> tick
+    // g_runtime_global_context.m_debugdraw_manager->tick(delta_time);
+
 
     // render one frame 
     // switch (m_render_pipeline_type)
@@ -63,6 +69,12 @@ void RenderSystem::processSwapData()
 
 void RenderSystem::clear() {
     LOG_INFO("Clear Render System");
+    if (m_rhi)
+    {
+        m_rhi->clear();
+    }
 }
+
+std::shared_ptr<RHI> RenderSystem::getRHI() const { return m_rhi; }
 
 INNO_NAMESPACE_END

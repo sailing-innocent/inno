@@ -7,8 +7,8 @@
 // input_system
 // particle_manager
 // physics_manager
-// render_system
 #include "runtime/function/render/window_system.h"
+#include "runtime/function/render/render_system.h"
 // debug_draw
 
 INNO_NAMESPACE_BEGIN
@@ -88,7 +88,7 @@ void InnoEngine::logicalTick(float delta_time)
 
 bool InnoEngine::renderTick(float delta_time)
 {
-    // g_runtime_global_context.m_render_system->tick(delta_time);
+    g_runtime_global_context.m_render_system->tick(delta_time);
     return true;
 }
 

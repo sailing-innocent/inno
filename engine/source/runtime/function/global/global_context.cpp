@@ -26,9 +26,6 @@ void RuntimeGlobalContext::startSystems(const std::string& config_file_path)
     RenderSystemInitInfo render_init_info;
     render_init_info.window_system = m_window_system;
     m_render_system->initialize(render_init_info);
-    // render system init info
-    // binding window system
-    // init render system
 
     // m_debugdraw_manager
     // m_render_debug_config
