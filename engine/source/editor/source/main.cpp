@@ -5,20 +5,20 @@
 
 int main(int argc, char** argv)
 {
-    // new engine
-    // engine.config()
-    // engine.init()
-    // engine.run()
-    // engine.clear()
-    // engine.shutdown()
     // int res = inno::visualizeDistribution();
     std::filesystem::path executable_path(argv[0]);
     std::filesystem::path config_file_path = executable_path.parent_path() / "InnoEditor.ini";
 
     inno::InnoEngine* engine = new inno::InnoEngine();
     engine->startEngine(config_file_path.generic_string());
-    std::cout << "ENGINE is RUNNING.." << std::endl;
-    // engine->clear();
+    engine->initalize();
+
+    inno::InnoEditor* editor = new inno::InnoEditor();
+    editor->initialize(engine);
+    editor->run();
+    editor->clear();
+
+    engine->clear();
     engine->shutdownEngine();
 
     return 0;

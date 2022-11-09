@@ -1,4 +1,4 @@
-#include <runtime/function/framework/component/component.h>
+// #include <runtime/function/framework/component/component.h>
 // transform component
 #include <runtime/function/global/global_context.h>
 
@@ -8,7 +8,7 @@
 // generated/all+serializer.h
 
 
-namespace inno
-{
+INNO_NAMESPACE_BEGIN
 
-}
+
+INNO_NAMESPACE_END

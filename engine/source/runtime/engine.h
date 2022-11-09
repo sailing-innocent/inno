@@ -53,31 +53,30 @@ inline double clamp(double x, double _min, double _max) {
 
 class InnoEngine
 {
-    // friend class InnoEditor;
+    friend class InnoEditor;
     // static const float s_fps_alpha;
 public:
     void startEngine(const std::string& config_file_path);
     
-    // void initalize();
-    // void clear();
+    void initalize();
+    void clear();
     bool isQuit() const { return m_is_quit; }
     
     void run();
-    void tickOneFrame(float delta_time);
+    bool tickOneFrame(float delta_time);
     int getFPS() const { return m_fps; }
 
     void shutdownEngine();
 
 protected: 
-    // void logicalTick(float delta_time);
-    // void renderTick(float delta_time);
+    void logicalTick(float delta_time);
+    bool renderTick(float delta_time);
     // void calculateFPS(float delta_time);
 
     /**
      * Each Frame can only be called once
     */
-    // float calculateDeltaTime();
-
+    float calculateDeltaTime();
 protected:
     bool m_is_quit {false};
 

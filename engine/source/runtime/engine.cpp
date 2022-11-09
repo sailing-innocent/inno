@@ -30,36 +30,66 @@ void InnoEngine::shutdownEngine()
     // Reflection
 }
 
-void InnoEngine::initalize() {}
-void InnoEngine::clear() {}
+void InnoEngine::initalize() {
+    LOG_INFO("Engine Initialized");
+}
+void InnoEngine::clear() {
+    LOG_INFO("Engine Clear");
+}
 
 void InnoEngine::run()
 {
     std::shared_ptr<WindowSystem> window_system = g_runtime_global_context.m_window_system;
     ASSERT(window_system);
 
+    LOG_INFO("Window System Ready, Start Window Loop");
     while (!window_system->shouldClose())
     {
-        const float delta_time = 0.0; // calculateDeltaTime()
-        tickOneFrame();
+        const float delta_time = calculateDeltaTime();
+        tickOneFrame(delta_time);
     }
 }
 
-// calculateDeltaTime
+float InnoEngine::calculateDeltaTime() 
+{
+    float delta_time;
+    {
+        using namespace std::chrono;
+
+        steady_clock::time_point tick_time_point = steady_clock::now();
+        duration<float> time_span = duration_cast<duration<float>>(tick_time_point - m_last_tick_time_point);
+        delta_time = time_span.count();
+        m_last_tick_time_point = tick_time_point;
+    }
+    return delta_time;
+}
 
 bool InnoEngine::tickOneFrame(float delta_time)
 {
+    // LOG_INFO("TICKING...");
     // logicTick
     // calculateFPS
     // swap render data
-    // renderTick
-
+    renderTick(delta_time);
     // debug renderer
 
-    // pollEvent
+    g_runtime_global_context.m_window_system->pollEvents();
     // setTitle
-    const bool should_window_close = false; // ->shouldClose();
+
+    const bool should_window_close = g_runtime_global_context.m_window_system->shouldClose();
     return !should_window_close;
+}
+
+void InnoEngine::logicalTick(float delta_time)
+{
+    // world_manager->tick
+    // input_system->tick
+}
+
+bool InnoEngine::renderTick(float delta_time)
+{
+    // g_runtime_global_context.m_render_system->tick(delta_time);
+    return true;
 }
 
 int drawHistogram(std::vector<float>& data) {

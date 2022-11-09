@@ -4,26 +4,11 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # add library json11
+file(GLOB_RECURSE HEADER_FILES "*.h")
+file(GLOB_RECURSE SOURCE_FILES "*.cpp")
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${HEADER_FILES} ${SOURCE_FILES})
 
-# file(GLOB_RECURSE HEADER_FILES "*.h")
-# file(GLOB_RECURSE SOURCE_FILES "*.cpp")
-# source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${HEADER_FILES} ${SOURCE_FILES})
-
-# add_library(${TARGET_NAME} ${HEADER_FILES} ${SOURCE_FILES})
-
-list(APPEND TARGET_SOURCE
-    core/base/hash.h
-    core/base/macro.h
-    core/log/log_system.h
-    core/log/log_system.cpp
-    function/global/global_context.h
-    function/global/global_context.cpp
-    engine.h
-    engine.cpp
-    function/render/window_system.h
-    function/render/window_system.cpp
-)
-add_library(${TARGET_NAME} ${TARGET_SOURCE})
+add_library(${TARGET_NAME} ${HEADER_FILES} ${SOURCE_FILES})
 
 list(APPEND RUNTIME_LIBS_DIR
     ${LIBSAIL_DIR}
