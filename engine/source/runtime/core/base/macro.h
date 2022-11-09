@@ -13,6 +13,17 @@
 
 #define LOG_INFO(...) LOG_HELPER(LogSystem::LogLevel::info, __VA_ARGS__);
 
+#define LOG_WARN(...) LOG_HELPER(LogSystem::LogLevel::warn, __VA_ARGS__);
+
+#define LOG_ERROR(...) LOG_HELPER(LogSystem::LogLevel::error, __VA_ARGS__);
+
+#define LOG_FATAL(...) LOG_HELPER(LogSystem::LogLevel::fatal, __VA_ARGS__);
+
+#define InnoSleep(_ms) std::this_thread::sleep_for(std::chrono::milliseconds(_ms));
+
+#define InnoNameOf(name) #name
+
+
 #ifdef NDEBUG
 #define ASSERT(statement)
 #else

@@ -35,9 +35,26 @@ public:
         case LogLevel::info:
             m_logger->info(std::forward<TARGS>(args)...);
             break;
+        case LogLevel::warn:
+            m_logger->warn(std::forward<TARGS>(args)...);
+            break;
+        case LogLevel::error:
+            // m_logger->error(std::forward<TARGS>(args)...);
+            break;
+        case LogLevel::fatal:
+            m_logger->critical(std::forward<TARGS>(args)...);
+            fatalCallback(std::forward<TARGS>(args)...);
+            break;
         default:
             break;
         }
+    }
+
+    template<typename ...TARGS>
+    void fatalCallback(TARGS&&... args)
+    {
+        const std::string format_str = "Format FATAL STR";
+        throw std::runtime_error(format_str);
     }
 
 private:
