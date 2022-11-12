@@ -1,5 +1,7 @@
 #include "runtime/function/render/window_system.h"
 
+#include "runtime/core/base/macro.h"
+
 INNO_NAMESPACE_BEGIN
 
 WindowSystem::~WindowSystem()
@@ -12,7 +14,7 @@ void WindowSystem::initialize(WindowCreateInfo create_info)
 {
     if (!glfwInit())
     {
-        // LOG_FATAL
+        LOG_FATAL("failed to initialize glfw");
         return;
     }
     m_width = create_info.width;
@@ -28,7 +30,7 @@ void WindowSystem::initialize(WindowCreateInfo create_info)
     );
     if (!m_window)
     {
-        // LOG_FATAL
+        LOG_FATAL("failed to initialize window");
         glfwTerminate();
         return;
     }

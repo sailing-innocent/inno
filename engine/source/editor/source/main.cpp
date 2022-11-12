@@ -20,6 +20,5 @@ int main(int argc, char** argv)
 
     engine->clear();
     engine->shutdownEngine();
-
     return 0;
 }

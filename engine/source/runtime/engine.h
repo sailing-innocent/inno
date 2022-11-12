@@ -1,14 +1,7 @@
 #pragma once
 #ifndef INNO_ENGINE_H_
 #define INNO_ENGINE_H_
-#include <string>
-#include <vector>
-#include <iostream>
-#include <sail/math.h>
-#include <sail/ui/figure.h>
-#include <ing/app/vk_canvas.hpp>
 
-#include <cmath>
 #include <limits>
 #include <memory>
 #include <cstdlib>
@@ -23,11 +16,6 @@
 
 INNO_NAMESPACE_BEGIN
 
-const std::string vertShaderPath = "E:/assets/shaders/canvas/vert.spv";
-const std::string fragShaderPath = "E:/assets/shaders/canvas/frag.spv";
-int drawRect2D();
-int drawTriangle();
-int drawHistogram(std::vector<float>& data);
 int visualizeDistribution();
 
 const double infinity = std::numeric_limits<double>::infinity();
@@ -86,7 +74,6 @@ protected:
     int m_frame_count {0};
     int m_fps {0};
 };
-
 
 INNO_NAMESPACE_END
 

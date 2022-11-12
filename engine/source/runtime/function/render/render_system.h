@@ -8,8 +8,12 @@
 #include <array>
 #include <memory>
 #include <optional>
-
 #include <common.h>
+
+
+// -------------ING--------------
+#include <ing/app/vk_hello.hpp>
+// ------------------------------
 
 INNO_NAMESPACE_BEGIN
 
@@ -44,12 +48,13 @@ public:
 
     void initialize(RenderSystemInitInfo init_info);
     void tick(float delta_time);
+    bool testTick(int i);
     void clear();
 
     // swapLogicRenderData
     // getSwapContext
     // getRenderCamera
-    std::shared_ptr<RHI> getRHI() const;
+    // std::shared_ptr<RHI> getRHI() const;
 
     // setRenderPipelineType
     // initializeUIRenderBackend
@@ -69,7 +74,8 @@ public:
 private:
     // m_render_pipeline_type
     // m_swap_context
-    std::shared_ptr<RHI> m_rhi;
+    // std::shared_ptr<RHI> m_rhi;
+    std::shared_ptr<ing::HelloTriangleApplication> m_app;
     // m_render_camera
     // m_render_scene
     // m_render_resource

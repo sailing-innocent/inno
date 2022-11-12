@@ -1,6 +1,9 @@
+
 #include "runtime/function/render/render_system.h"
 
 #include "runtime/core/base/macro.h"
+
+#include "runtime/function/render/window_system.h"
 
 // asset_manager
 // config_manager
@@ -15,7 +18,7 @@
 // main_camera_pass
 // particle_pass
 
-#include "runtime/function/render/interface/vulkan/vulkan_rhi.h"
+// #include "runtime/function/render/interface/vulkan/vulkan_rhi.h"
 
 INNO_NAMESPACE_BEGIN
 
@@ -29,10 +32,13 @@ void RenderSystem::initialize(RenderSystemInitInfo init_info)
     // asset manager
     
     // render context initalize
-    RHIInitInfo rhi_init_info;
-    rhi_init_info.window_system = init_info.window_system;
-    m_rhi = std::make_shared<VulkanRHI>();
-    m_rhi->initialize(rhi_init_info);
+    // RHIInitInfo rhi_init_info;
+    // rhi_init_info.window_system = init_info.window_system;
+    // m_rhi = std::make_shared<VulkanRHI>();
+    // m_rhi->initialize(rhi_init_info);
+
+    m_app = std::make_shared<ing::HelloTriangleApplication>();
+    m_app->init(init_info.window_system->getWindow());
 
     // global rendering resource
 
@@ -57,9 +63,11 @@ void RenderSystem::tick(float delta_time)
     // prepare pass data
     // g_runtime_global_context.m_debugdraw_manager->tick(delta_time);
 
+    m_app->tick(delta_time);
 
     // render one frame 
     // switch (m_render_pipeline_type)
+    // m_render_pipeline->forward render
 }
 
 void RenderSystem::processSwapData()
@@ -69,12 +77,18 @@ void RenderSystem::processSwapData()
 
 void RenderSystem::clear() {
     LOG_INFO("Clear Render System");
+    /*
     if (m_rhi)
     {
         m_rhi->clear();
     }
+    */
+    if (m_app) {
+        m_app->wait();
+        m_app->terminate();
+    }
 }
 
-std::shared_ptr<RHI> RenderSystem::getRHI() const { return m_rhi; }
+// std::shared_ptr<RHI> RenderSystem::getRHI() const { return m_rhi; }
 
 INNO_NAMESPACE_END

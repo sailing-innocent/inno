@@ -1,5 +1,5 @@
 $basePath = "E:/assets/shaders"
-$folderName = "canvas"
+$folderName = "basic"
 # $folderName = "scene"
 
 glslc "${basePath}/${folderName}/shader.vert" -o "${basePath}/${folderName}/vert.spv"
