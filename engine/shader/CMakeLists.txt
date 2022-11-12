@@ -1,4 +1,4 @@
-message("IS GENERATING SHADERS")
+# message("IS GENERATING SHADERS")
 set(TARGET_NAME ${SHADER_COMPILE_TARGET})
 
 file(GLOB_RECURSE SHADER_FILES CONFIGURE_DEPENDS 
@@ -14,7 +14,7 @@ file(GLOB_RECURSE SHADER_FILES CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/glsl/*.rmiss"
     "${CMAKE_CURRENT_SOURCE_DIR}/glsl/*.rcall")
 
-    # message("GENERATED SHADER FILES: ${SHADER_FILES}")
+# message("GENERATED SHADER FILES: ${SHADER_FILES}")
 source_group("shaders" FILES ${SHADER_FILES})
 
 set(SHADER_INCLUDE_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -35,6 +35,7 @@ compile_shader(
     "${TARGET_NAME}"
     "${SHADER_INCLUDE_FOLDER}"
     "${GENERATED_SHADER_FOLDER}"
-    "${glslangValidator_executable}")
+    "${glslangValidator_executable}"
+)
 
 set_target_properties("${TARGET_NAME}" PROPERTIES FOLDER "Engine")

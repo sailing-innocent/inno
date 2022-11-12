@@ -50,7 +50,13 @@ target_include_directories(
 target_compile_options(${TARGET_NAME} PUBLIC "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
 target_compile_options(${TARGET_NAME} PUBLIC "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/WX->")
 
-# link libraries
+add_dependencies(${TARGET_NAME} ${SHADER_COMPILE_TARGET})
+target_include_directories(
+    ${TARGET_NAME}
+    PUBLIC $<BUILD_INTERFACE:${ENGINE_ROOT_DIR}/shader/generated/cpp>)
+
+# Third parties
+
 
 string(TOLOWER ${TARGET_NAME}/version.h VERSION_HEADER_LOCATION)
 

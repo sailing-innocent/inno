@@ -1,0 +1,9 @@
+set(TARGET_NAME InnoParser)
+
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+file(GLOB_RECURSE HEADERS "*.h")
+file(GLOB_RECURSE SOURCES "*.cpp")
+
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${HEADERS} ${SOURCES})
+
