@@ -27,10 +27,13 @@ class RenderCamera;
 class WindowUI;
 class DebugDrawManager;
 
+class IngDrawManager;
+
 struct RenderSystemInitInfo
 {
     std::shared_ptr<WindowSystem> window_system;
-    std::shared_ptr<DebugDrawManager> debugdraw_manager;
+    // std::shared_ptr<DebugDrawManager> debugdraw_manager;
+    std::shared_ptr<IngDrawManager> ingdraw_manager;
 };
 
 struct EngineContentViewport

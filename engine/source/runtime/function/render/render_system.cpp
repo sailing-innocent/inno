@@ -105,6 +105,7 @@ void RenderSystem::tick(float delta_time)
     // render one frame 
     // switch (m_render_pipeline_type)
     // m_render_pipeline->forward render
+    m_app->tick(delta_time);
 }
 
 void RenderSystem::processSwapData()

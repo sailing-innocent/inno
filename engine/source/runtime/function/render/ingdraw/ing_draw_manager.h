@@ -28,9 +28,9 @@ public:
 
 private:
     // swap data to render
-    // void drawIngObject(uint32_t current_swapchain_image_index);
-    // prepareDrawBuffer
-    // drawPointLineTriangleBox()
+    void drawIngObject(uint32_t current_swapchain_image_index);
+    void prepareDrawBuffer(uint32_t current_swapchain_image_index);
+    void drawPointLineTriangleBox(uint32_t current_swapchain_image_index);
     // drawWireFrameObject()
 
     std::mutex m_mutex;
