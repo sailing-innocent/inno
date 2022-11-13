@@ -26,7 +26,7 @@ function(compile_shader SHADERS TARGET_NAME SHADER_INCLUDE_FOLDER GENERATED_DIR 
 
         list(APPEND ALL_GENERATED_SPV_FILES ${SPV_FILE})
 
-        message("${CMAKE_COMMAND} -DPATH=${SPV_FILE} -DHEADER=\"${CPP_FILE}\" -DGLOBAL=\"${GLOBAL_SHADER_VAR}\" -P \"${INNO_ROOT_DIR}/cmake/GenerateShaderCPPFile.cmake\"}")
+        # message("${CMAKE_COMMAND} -DPATH=${SPV_FILE} -DHEADER=\"${CPP_FILE}\" -DGLOBAL=\"${GLOBAL_SHADER_VAR}\" -P \"${INNO_ROOT_DIR}/cmake/GenerateShaderCPPFile.cmake\"}")
         add_custom_command(
             OUTPUT ${CPP_FILE}
             COMMAND ${CMAKE_COMMAND} -DPATH=${SPV_FILE} -DHEADER="${CPP_FILE}" 

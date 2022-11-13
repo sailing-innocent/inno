@@ -42,6 +42,6 @@ endfunction()
 
 # let's use it as a script
 if(EXISTS "${PATH}")
-    message("GENERATED: ${HEADER}")
+    # message("GENERATED: ${HEADER}")
     embed_resource("${PATH}" "${HEADER}" "${GLOBAL}")
 endif()
