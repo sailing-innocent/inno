@@ -2,6 +2,11 @@
 
 #include "ing_draw_group.h"
 #include "ing_draw_pipeline.h"
+#include "runtime/function/render/render_resource.h"
+#include "ing_draw_context.h"
+// font
+
+#include <ing/app/vk_canvas.hpp>
 
 INNO_NAMESPACE_BEGIN
 
@@ -11,7 +16,7 @@ public:
     IngDrawManager() {}
     void initialize();
     void setupPipelines();
-    // preparePassData
+    void preparePassData(std::shared_ptr<RenderResourceBase> render_resource);
     void destroy();
     void clear();
     void tick(float delta_time);
@@ -29,7 +34,7 @@ private:
     // drawWireFrameObject()
 
     std::mutex m_mutex;
-    // app
+    std::shared_ptr<ing::CanvasApp> m_app = nullptr;
     IngDrawPipeline* m_ing_draw_pipeline[IngDrawPipelineType::_ing_draw_pipeline_type_count] = {};
     // buffer allocator
     // draw context

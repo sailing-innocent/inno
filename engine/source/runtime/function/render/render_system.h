@@ -12,7 +12,8 @@
 
 
 // -------------ING--------------
-#include <ing/app/vk_hello.hpp>
+// #include <ing/app/vk_hello.hpp>
+#include <ing/app/vk_canvas.hpp>
 // ------------------------------
 
 INNO_NAMESPACE_BEGIN
@@ -51,6 +52,8 @@ public:
     bool testTick(int i);
     void clear();
 
+    std::shared_ptr<ing::CanvasApp> getApp() const;
+
     // swapLogicRenderData
     // getSwapContext
     // getRenderCamera
@@ -75,7 +78,7 @@ private:
     // m_render_pipeline_type
     // m_swap_context
     // std::shared_ptr<RHI> m_rhi;
-    std::shared_ptr<ing::HelloTriangleApplication> m_app;
+    std::shared_ptr<ing::CanvasApp> m_app;
     // m_render_camera
     // m_render_scene
     // m_render_resource

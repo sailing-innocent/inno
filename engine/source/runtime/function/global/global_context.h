@@ -21,6 +21,7 @@ class WindowSystem;
 
 // struct EngineInitParams;
 
+class IngDrawManager;
 
 class RuntimeGlobalContext
 {
@@ -35,6 +36,7 @@ public:
     // std::shared_ptr<WorldManager> m_world_manager;
     std::shared_ptr<RenderSystem> m_render_system;
     std::shared_ptr<WindowSystem> m_window_system;
+    std::shared_ptr<IngDrawManager> m_ing_draw_manager;
 };
 
 extern RuntimeGlobalContext g_runtime_global_context;

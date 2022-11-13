@@ -15,6 +15,7 @@
 // window_system
 // global_context
 // debug_draw_manager
+#include "runtime/function/render/ingdraw/ing_draw_manager.h"
 // main_camera_pass
 // particle_pass
 
@@ -24,6 +25,29 @@ INNO_NAMESPACE_BEGIN
 
 RenderSystem::~RenderSystem() {
     clear();
+}
+
+
+bool genIndex(std::vector<uint16_t>& vu) {
+    const size_t size = 6;
+    vu.resize(size);
+    uint16_t indi[size] = {
+        0, 1, 2, 2, 3, 0
+    };
+    for (auto i = 0; i < size; i++) {
+        vu[i] = indi[i];
+    }
+    return true;
+}
+
+bool genVertex(std::vector<float>& vf) {
+    vf =  {
+        -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+        0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+        0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+        -0.5f, 0.5f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f
+    };
+    return true;
 }
 
 void RenderSystem::initialize(RenderSystemInitInfo init_info) 
@@ -37,7 +61,19 @@ void RenderSystem::initialize(RenderSystemInitInfo init_info)
     // m_rhi = std::make_shared<VulkanRHI>();
     // m_rhi->initialize(rhi_init_info);
 
-    m_app = std::make_shared<ing::HelloTriangleApplication>();
+    std::vector<float> vertices;
+    genVertex(vertices);
+
+    std::vector<uint16_t> indices;
+    genIndex(indices);
+
+    m_app = std::make_shared<ing::CanvasApp>();
+    if (!m_app->setVertex(vertices, vertices.size())) {
+        LOG_FATAL("init verttices failed");
+    }
+    if (!m_app->setIndex(indices, indices.size())) {
+        LOG_FATAL("init indices failed");
+    }
     m_app->init(init_info.window_system->getWindow());
 
     // global rendering resource
@@ -63,7 +99,8 @@ void RenderSystem::tick(float delta_time)
     // prepare pass data
     // g_runtime_global_context.m_debugdraw_manager->tick(delta_time);
 
-    m_app->tick(delta_time);
+    g_runtime_global_context.m_ing_draw_manager->tick(delta_time);
+    // m_app->tick(delta_time);
 
     // render one frame 
     // switch (m_render_pipeline_type)
@@ -88,6 +125,8 @@ void RenderSystem::clear() {
         m_app->terminate();
     }
 }
+
+std::shared_ptr<ing::CanvasApp> RenderSystem::getApp() const { return m_app; }
 
 // std::shared_ptr<RHI> RenderSystem::getRHI() const { return m_rhi; }
 

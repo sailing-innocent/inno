@@ -4,6 +4,8 @@
 #include "runtime/function/render/window_system.h"
 #include "runtime/function/render/render_system.h"
 
+#include "runtime/function/render/ingdraw/ing_draw_manager.h"
+
 INNO_NAMESPACE_BEGIN
 
 RuntimeGlobalContext g_runtime_global_context;
@@ -27,12 +29,16 @@ void RuntimeGlobalContext::startSystems(const std::string& config_file_path)
     render_init_info.window_system = m_window_system;
     m_render_system->initialize(render_init_info);
 
+    m_ing_draw_manager = std::make_shared<IngDrawManager>();
+    m_ing_draw_manager->initialize();
     // m_debugdraw_manager
     // m_render_debug_config
 }
 
 void RuntimeGlobalContext::shutdownSystems()
 {
+    m_ing_draw_manager.reset();
+
     m_render_system->clear();
     m_render_system.reset();
     m_window_system.reset();

@@ -1,6 +1,6 @@
 #include "ing_draw_manager.h"
-// global context
-// render system
+#include "runtime/function/global/global_context.h"
+#include "runtime/function/render/render_system.h"
 // math
 
 INNO_NAMESPACE_BEGIN
@@ -8,7 +8,7 @@ INNO_NAMESPACE_BEGIN
 // initialize
 // get app -> setupPipeline
 void IngDrawManager::initialize() {
-    // get app
+    m_app = g_runtime_global_context.m_render_system->getApp();
     setupPipelines();
 }
 
@@ -44,11 +44,16 @@ void IngDrawManager::clear()
 void IngDrawManager::tick(float delta_time)
 {
     std::lock_guard<std::mutex> guard(m_mutex);
+    m_app->tick(delta_time);
     // not update when ticking
     // allocator->tick() update parameter
     // m_ing_draw_context->tick() // remove dead primitives
 }
 
-
+void IngDrawManager::preparePassData(std::shared_ptr<RenderResourceBase> render_resource)
+{
+    // const RenderResource* resource = get()
+    // m_proj_view_matrix = resource->m_mesh_perframe_storage_buffer_object.pvm
+}
 
 INNO_NAMESPACE_END
