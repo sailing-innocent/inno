@@ -21,3 +21,4 @@ set(CMAKE_INSTALL_PREFIX "${INNO_ROOT_DIR}/bin")
 set(BINARY_ROOT_DIR "${CMAKE_INSTALL_PREFIX}/")
 
 add_subdirectory(engine)
+
